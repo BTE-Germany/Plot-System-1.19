@@ -130,8 +130,11 @@ public class PlotMemberMenu extends AbstractMenu {
         // Set click event for add plot member item
         getMenu().getSlot(16).setClickHandler((clickPlayer, clickInformation) -> {
             clickPlayer.closeInventory();
+
             new AnvilGUI.Builder()
-                    .onComplete((player, text) -> {
+                    .onClick((slot, stateSnapshot) -> {
+                        Player player = stateSnapshot.getPlayer();
+                        String text = stateSnapshot.getText();
                         try {
                             if (Builder.getBuilderByName(text) != null) {
                                 Builder builder = Builder.getBuilderByName(text);
